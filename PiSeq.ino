@@ -2,29 +2,8 @@
 //
 // PiSeq : Pitch Interval Sequencer
 //
-// v1 PagePlayのUI作成
-// v2 PagePlayの更新、PageSongのUI作成
-// v3 PageSongの更新
-// v4 PageSeqの作成
-// v5 PagePatの作成
-// v6 PageSeqRndの作成
-// v7 PagePatRndの作成
-// v8 Push Buttonの設定
-// v9 Scale表示の更新
-// v10 Midi On/Offの追加
-// v11 動作時のバグの修正中
-// v12 変数の修正　基本動作確認
-// v13 Play時の表示修正
-// v14 画面推移修正
-// v15 乱数Listの生成
-// v16 乱数の基本動作確認
-// v17 PageSet1画面追加
-// v18 和音の設定
-// v19 乱数Listの修正
-// v20 楽器名称表示
-// v21 Save,Loadの作成
-// v22 Set2のチューニングを作成
-// v23
+// v1.0 GitHubに登録
+//
 // ************************************************** **************************************************
 //ローカル変数    camelCase	        dispPage
 //グローバル変数  g_dispPage        g_dispPage
@@ -34,7 +13,7 @@
 //             または kCamelCase  kPagePlay
 
 const String SrcId = "PiSeq";
-const int SrcVer = 23;
+const String SrcVer = "1.0";
 
 #include <M5Unified.h>
 #include <SD.h>             // SD Card
@@ -279,7 +258,7 @@ int g_patRndPitchList[8][17];
 // User Interface
 
 String g_Id = SrcId;
-int g_Ver = SrcVer;
+String g_Ver = SrcVer;
 
 int g_curOsc = 0;
 
@@ -739,7 +718,7 @@ bool loadJson() {
 
   // 基本情報の読み出し
   g_Id = doc["id"] | "Other";
-  g_Ver = doc["ver"] | 0;
+  g_Ver = doc["ver"] | "x.x";
   g_tempoBpm = doc["bpm"] | 100;
   g_internalClock = doc["int_clock"] | true;
   g_scale = doc["scale"] | 5;  // Maj Pent
@@ -3919,7 +3898,7 @@ void setup() {
 
   M5.Display.setTextColor(White, Black);
   M5.Display.setFreeFont(&FreeSans9pt7b);
-  M5.Display.drawString("Ver." + String(SrcVer), 160, 16);
+  M5.Display.drawString("Ver." + SrcVer, 144, 16);
   M5.Display.setFreeFont(&FreeSans12pt7b);
 }
 
