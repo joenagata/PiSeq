@@ -5,12 +5,22 @@
 // v1.0 GitHubに登録
 //
 // ************************************************** **************************************************
-//ローカル変数    camelCase	        dispPage
-//グローバル変数  g_dispPage        g_dispPage
-//定数          UPPER_CASE        MAX_PAGE
-//列挙名（enum） PascalCase        PageType
-//enumの中身    PascalCase.       PagePlay
-//             または kCamelCase  kPagePlay
+// <Boards>
+// Arduino AVR Boards 1.8.6
+// esp32 3.2.0
+//
+// <Library>
+// ArduinoJson 7.4.0
+// M5GFX 0.2.8
+// M5UNIT_8Encoder 0.0.1
+// M5Unified 0.2.6
+// ************************************************** **************************************************
+// ローカル変数    camelCase        dispPage
+// グローバル変数  g_dispPage       g_dispPage
+// 定数          UPPER_CASE        MAX_PAGE
+// 列挙名（enum） PascalCase        PageType
+// enumの中身    PascalCase        PagePlay
+// ************************************************** **************************************************
 
 const String SrcId = "PiSeq";
 const String SrcVer = "1.0";
@@ -4017,14 +4027,4 @@ void loop() {
 }
 
 // ************************************************** **************************************************
-// <Boards>
-// Arduino AVR Boards 1.8.6
-// esp32 3.2.0
-//
-// <Library>
-// ArduinoJson 7.4.0
-// M5GFX 0.2.8
-// M5UNIT_8Encoder 0.0.1
-// M5Unified 0.2.6
-//
-// ************************************************** **************************************************
+
