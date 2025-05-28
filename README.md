@@ -10,6 +10,7 @@ A MIDI sequencer built from block combinations with random elements.
 - Songs can be saved to and loaded from a MicroSD card
 
 ### Song Structure
+<img src="images/play.bmp" align="right" width="240">
 A song consists of Song Blocks numbered 1 to 8. Up to 8 blocks can be arranged in sequence, and playback loops back to the beginning after reaching the end.
 
 For example, if set to `1, 2, 1, 2, 3`, playback will follow:
@@ -21,6 +22,7 @@ Each Song Block is made up of sequences labeled A–Z. Up to 8 sequences can be 
 - Sequences S–Z include random behavior, where one of Sequences A–H is selected at random for playback.
 - When arranging up to 8 sequences in a song, each sequence can have an independent pitch shift amount.
 
+<img src="images/song.bmp" align="right" width="240">
 For example, setting:
 `A: 0, B: 0, A: +2, B: +2`
 will result in A and B being played normally the first time, and then played two steps higher the next time using the selected scale.
@@ -31,6 +33,7 @@ Each Sequence consists of patterns labeled a–z. Up to 8 patterns can be arrang
 - Patterns s–z include randomness and randomly select one of Patterns a–h.
 - Each pattern can also be assigned a pitch shift value within the sequence.
 
+<img src="images/seq.bmp" align="right" width="240">
 For example, setting:
 `a: 0, b: 0, a: +2, b: +2`
 means that after playing a and b normally, the next a and b will be played two steps higher in the scale.
@@ -46,8 +49,7 @@ Each Pattern plays over one quarter note (1 beat), but its rhythm can be selecte
 Each of these note positions can also have an individual pitch shift amount assigned.
 
 ### Random Playback
-
-
+<img src="images/seqrnd.bmp" align="right" width="240">
 Sequences S–Z and patterns s–z are used for random playback.
 You can assign weightings for the probability of selecting from A–H (or a–h).
 
@@ -76,5 +78,17 @@ Scale | Description | Notes
 --- | --- | ---
 Chromatic | 12-tone (semitones) | C,C#,D,D#,E,F,F#,G,G#,A,A#,B
 Major | 7-note scale | C,D,E,F,G,A,B
+Minor | 7-note scale | C,D,Eb,F,G,Ab,Bb
+Harmonic Minor | 7-note scale | C,D,Eb,F,G,Ab,B
+Merodic Minor | 7-note scale | C,D,Eb,F,G,A,B
 Major Pentatonic | 5-note scale | C,D,E,G,A
+Minor Pentatonic | 5-note scale | C,Eb,F,G,Bb
+Miyako-bushi | 5-note scale | C,Db,F,G,Ab
+Blues | 6-note scale | C,Eb,F,F#,G,Bb
+Whole Tone | 6-note scale | C,D,E,F#,G#,A#
+Diminished | 8-note scale | C,Db,Eb,E,Gb,G,A,Bb
+
+
+
+
 
