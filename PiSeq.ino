@@ -1,9 +1,12 @@
 // ************************************************** **************************************************
+// PiSeq v1.0
 //
-// PiSeq : Pitch Interval Sequencer
-//
-// v1.0
-//
+// Pitch Interval Sequencer
+// ************************************************** **************************************************
+// <Hardware>
+// M5Stack CoreS3 or SE
+// Midi Unit with DIN Connector (SAM2695)
+// 8-Encoder Unit (STM32F030)
 // ************************************************** **************************************************
 // <Boards>
 // Arduino AVR Boards 1.8.6
@@ -25,11 +28,17 @@
 const String SrcId = "PiSeq";
 const String SrcVer = "1.0";
 
+#define Debug
+
 #include <M5Unified.h>
 #include <SD.h>             // SD Card
 #include <ArduinoJson.h>    // Json
 #include "M5_SAM2695.h"     // MIDI *** MIDI Clock, MIDI Start, MIDI Stopを追加 MIDI UnitのSWはSEPARATE
 #include "UNIT_8ENCODER.h"  // 8encoder
+
+#ifdef Debug
+#include <FS.h>
+#endif
 
 #define SD_CS 4  // CoreS3のSDカードはCSピンがGPIO4
 
@@ -1104,7 +1113,7 @@ void dispPagePlay() {
   M5.Display.drawString("Pat", 160, 226);
 
   M5.Display.fillRoundRect(192, 210, 64, 30, 4, DarkBlue);
-  M5.Display.setTextColor(White, DarkPurple);
+  M5.Display.setTextColor(White, DarkBlue);
   M5.Display.drawString("Set", 224, 227);
 
   M5.Display.fillRoundRect(256, 210, 64, 30, 4, DarkPurple);
@@ -1342,6 +1351,15 @@ void cntlPagePlay() {
       }
     }
   }
+
+#ifdef Debug
+  // Capture screen
+  if (!g_encoder.getButtonStatus(0)) {
+    delay(500);
+    saveBMP("/disp_play.bmp");
+    delay(500);
+  }
+#endif
 }
 
 
@@ -1590,6 +1608,15 @@ void cntlPageSong() {
     }
     M5.Display.setFreeFont(&FreeSans12pt7b);
   }
+
+#ifdef Debug
+  // Capture screen
+  if (!g_encoder.getButtonStatus(0)) {
+    delay(500);
+    saveBMP("/disp_song.bmp");
+    delay(500);
+  }
+#endif
 }
 
 // ************************************************** **************************************************
@@ -1848,6 +1875,15 @@ void cntlPageSeq() {
     }
     M5.Display.setFreeFont(&FreeSans12pt7b);
   }
+
+#ifdef Debug
+  // Capture screen
+  if (!g_encoder.getButtonStatus(0)) {
+    delay(500);
+    saveBMP("/disp_seq.bmp");
+    delay(500);
+  }
+#endif
 }
 
 // ************************************************** **************************************************
@@ -1998,7 +2034,6 @@ void dispPageSeqRnd() {
     }
   }
 
-
   // Menu Button
   M5.Display.fillRoundRect(0, 210, 64, 30, 4, DarkGrey);
   M5.Display.setTextColor(White, DarkGrey);
@@ -2061,7 +2096,6 @@ void dispPageSeqRnd() {
     delay(10);
   }
 }
-
 
 // ************************************************** **************************************************
 // cntlPageSeqRnd
@@ -2152,6 +2186,15 @@ void cntlPageSeqRnd() {
       }
     }
   }
+
+#ifdef Debug
+  // Capture screen
+  if (!g_encoder.getButtonStatus(0)) {
+    delay(500);
+    saveBMP("/disp_seqrnd.bmp");
+    delay(500);
+  }
+#endif
 }
 
 // ************************************************** **************************************************
@@ -2279,7 +2322,7 @@ void dispPagePat() {
         case 2:
         case 1:
         case 0:
-          g_encoder.setLEDColor(i, LedPurple);
+          g_encoder.setLEDColor(i, (7 - i <= g_patRtmDur[g_curPat]) ? LedPurple : LedBlack);
           break;
       }
     } else {
@@ -2292,7 +2335,7 @@ void dispPagePat() {
         case 2:
         case 1:
         case 0:
-          g_encoder.setLEDColor(i, (7 - i < g_patRtmDur[g_curPat]) ? LedGreen : LedBlack);
+          g_encoder.setLEDColor(i, (7 - i <= g_patRtmDur[g_curPat]) ? LedGreen : LedBlack);
           break;
       }
     }
@@ -2395,6 +2438,15 @@ void cntlPagePat() {
     }
     M5.Display.setFreeFont(&FreeSans12pt7b);
   }
+
+#ifdef Debug
+  // Capture screen
+  if (!g_encoder.getButtonStatus(0)) {
+    delay(500);
+    saveBMP("/disp_pat.bmp");
+    delay(500);
+  }
+#endif
 }
 
 // ************************************************** **************************************************
@@ -2698,8 +2750,16 @@ void cntlPagePatRnd() {
       }
     }
   }
-}
 
+#ifdef Debug
+  // Capture screen
+  if (!g_encoder.getButtonStatus(0)) {
+    delay(500);
+    saveBMP("/disp_patrnd.bmp");
+    delay(500);
+  }
+#endif
+}
 
 // ************************************************** **************************************************
 // dispPageFile
@@ -2799,13 +2859,15 @@ void cntlPageFile() {
       }
     }
   }
-  /*
-  for (int i = 0; i < 8; i++) {
-    if (checkEncoder(i)) {
-      // Encoder i
-    }
+
+#ifdef Debug
+  // Capture screen
+  if (!g_encoder.getButtonStatus(0)) {
+    delay(500);
+    saveBMP("/disp_file.bmp");
+    delay(500);
   }
-  */
+#endif
 }
 
 // ************************************************** **************************************************
@@ -2925,6 +2987,15 @@ void cntlPageLoad() {
 
   // ファイルスクロール
   scrollList();
+
+#ifdef Debug
+  // Capture screen
+  if (!g_encoder.getButtonStatus(0)) {
+    delay(500);
+    saveBMP("/disp_load.bmp");
+    delay(500);
+  }
+#endif
 }
 
 // ************************************************** **************************************************
@@ -3054,6 +3125,15 @@ void cntlPageSave() {
 
   // ファイルスクロール
   scrollList();
+
+#ifdef Debug
+  // Capture screen
+  if (!g_encoder.getButtonStatus(0)) {
+    delay(500);
+    saveBMP("/disp_save.bmp");
+    delay(500);
+  }
+#endif
 }
 
 // ************************************************** **************************************************
@@ -3075,8 +3155,6 @@ void dispPageRename() {
 
   M5.Display.setTextColor(White, Black);
   M5.Display.drawString("Ren", 288, 16);
-
-
 
   // Menu Button
   M5.Display.fillRoundRect(0, 210, 64, 30, 4, DARKGREY);
@@ -3162,6 +3240,15 @@ void cntlPageRename() {
 
   // ファイルスクロール
   scrollList();
+
+#ifdef Debug
+  // Capture screen
+  if (!g_encoder.getButtonStatus(0)) {
+    delay(500);
+    saveBMP("/disp_rename.bmp");
+    delay(500);
+  }
+#endif
 }
 
 // ************************************************** **************************************************
@@ -3183,8 +3270,6 @@ void dispPageDelete() {
 
   M5.Display.setTextColor(White, Black);
   M5.Display.drawString("Del", 288, 16);
-
-
 
   // Menu Button
   M5.Display.fillRoundRect(0, 210, 64, 30, 4, DARKGREY);
@@ -3275,6 +3360,15 @@ void cntlPageDelete() {
 
   // ファイルスクロール
   scrollList();
+
+#ifdef Debug
+  // Capture screen
+  if (!g_encoder.getButtonStatus(0)) {
+    delay(500);
+    saveBMP("/disp_delete.bmp");
+    delay(500);
+  }
+#endif
 }
 
 // ************************************************** **************************************************
@@ -3463,6 +3557,15 @@ void cntlPageInput() {
     M5.Display.setTextColor(Black, White);
     M5.Display.drawString(String(CharSet[g_nameData[g_namePos]]), 76 + g_namePos * 24, 120);
   }
+
+#ifdef Debug
+  // Capture screen
+  if (!g_encoder.getButtonStatus(0)) {
+    delay(500);
+    saveBMP("/disp_input.bmp");
+    delay(500);
+  }
+#endif
 }
 
 // ************************************************** **************************************************
@@ -3718,6 +3821,16 @@ void cntlPageSet1() {
     }
   }
   M5.Display.setFreeFont(&FreeSans12pt7b);
+
+
+#ifdef Debug
+  // Capture screen
+  if (!g_encoder.getButtonStatus(0)) {
+    delay(500);
+    saveBMP("/disp_set1.bmp");
+    delay(500);
+  }
+#endif
 }
 
 // ************************************************** **************************************************
@@ -3850,6 +3963,16 @@ void cntlPageSet2() {
     M5.Display.drawString(String(g_tuneKey), 64, 90);
     M5.Display.drawString(String(g_tuneKey), 64, 120);
   }
+
+
+#ifdef Debug
+  // Capture screen
+  if (!g_encoder.getButtonStatus(0)) {
+    delay(500);
+    saveBMP("/disp_set2.bmp");
+    delay(500);
+  }
+#endif
 }
 
 // ************************************************** **************************************************
@@ -4027,4 +4150,80 @@ void loop() {
 }
 
 // ************************************************** **************************************************
+// saveBMP : Debug用
+// ************************************************** **************************************************
+#ifdef Debug
+void saveBMP(const char *filename) {
+  if (!SD.begin(SD_CS)) {
+    Serial.println("カードのマウントに失敗しました");
+    return;
+  }
 
+  uint8_t cardType = SD.cardType();
+  if (cardType == CARD_NONE) {
+    Serial.println("SDカードが挿入されていません");
+    return;
+  }
+
+  File file = SD.open(filename, FILE_WRITE);
+
+  if (!file) {
+    Serial.println("Failed to open file for writing");
+    return;
+  }
+
+  int16_t w = M5.Display.width();
+  int16_t h = M5.Display.height();
+
+  // BMPヘッダーを書き込む（24bit RGB）
+  uint32_t rowSize = ((24 * w + 31) / 32) * 4;
+  uint32_t fileSize = 54 + rowSize * h;
+
+  // BITMAPFILEHEADER
+  file.write('B');
+  file.write('M');
+  file.write((uint8_t *)&fileSize, 4);
+  file.write((uint8_t)0);
+  file.write((uint8_t)0);
+  file.write((uint8_t)0);
+  file.write((uint8_t)0);
+  file.write((uint8_t)54);
+  file.write((uint8_t)0);
+  file.write((uint8_t)0);
+  file.write((uint8_t)0);
+
+  // BITMAPINFOHEADER
+  uint32_t infoSize = 40;
+  file.write((uint8_t *)&infoSize, 4);
+  file.write((uint8_t *)&w, 4);
+  int32_t negH = -h;  // 上から下に描画
+  file.write((uint8_t *)&negH, 4);
+  uint16_t planes = 1;
+  uint16_t bits = 24;
+  file.write((uint8_t *)&planes, 2);
+  file.write((uint8_t *)&bits, 2);
+  for (int i = 0; i < 24; i++) file.write((uint8_t)0);
+
+  // ピクセルデータ
+  for (int y = 0; y < h; y++) {
+    for (int x = 0; x < w; x++) {
+      uint16_t color = M5.Display.readPixel(x, y);
+      uint8_t r = ((color >> 11) & 0x1F) << 3;
+      uint8_t g = ((color >> 5) & 0x3F) << 2;
+      uint8_t b = (color & 0x1F) << 3;
+      file.write(b);
+      file.write(g);
+      file.write(r);
+    }
+    // パディング
+    while ((w * 3) % 4 != 0) {
+      file.write((uint8_t)0);
+      w++;
+    }
+  }
+
+  file.close();
+  Serial.println("Screenshot saved");
+}
+#endif
+// ************************************************** **************************************************
