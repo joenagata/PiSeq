@@ -28,7 +28,7 @@
 const String SrcId = "PiSeq";
 const String SrcVer = "1.0";
 
-#define Debug
+//#define Debug
 
 #include <M5Unified.h>
 #include <SD.h>             // SD Card
@@ -575,8 +575,9 @@ void evalTick() {
         }
       }
     }
-
-    Serial.println("**** tick:" + String(g_tickCount) + " " + String(t) + " rtm:" + g_rtmCount);
+#ifdef Debug
+    Serial.println("Tick:" + String(g_tickCount) + " " + String(t) + " rtm:" + g_rtmCount);
+#endif
   }
 }
 
@@ -998,6 +999,9 @@ void setScale() {
 // ************************************************** **************************************************
 void dispPagePlay() {
   Serial.println("dispPagePlay");
+  if (g_select > 1) {
+    g_select = 0;
+  }
 
   M5.Display.clear();
   M5.Display.setTextDatum(MC_DATUM);  // MC_DATUM : 中央、ML_DATUM : 左中央
@@ -3883,21 +3887,19 @@ void dispPageSet2() {
 
   // LED
   for (int i = 0; i < 8; i++) {
-    if (g_select == 0) {
-      switch (i) {
-        case 7:
-          g_encoder.setLEDColor(i, LedCyan);
-          break;
-        case 6:
-        case 5:
-        case 4:
-        case 3:
-        case 2:
-        case 1:
-        case 0:
-          g_encoder.setLEDColor(i, LedBlack);
-          break;
-      }
+    switch (i) {
+      case 7:
+        g_encoder.setLEDColor(i, LedCyan);
+        break;
+      case 6:
+      case 5:
+      case 4:
+      case 3:
+      case 2:
+      case 1:
+      case 0:
+        g_encoder.setLEDColor(i, LedBlack);
+        break;
     }
     delay(10);
   }
@@ -3926,6 +3928,7 @@ void cntlPageSet2() {
       if (g_touch.x >= 128 && g_touch.x < 192) {
         // Note On
         for (int i = 0; i < 4; i++) {
+          g_midi.setInstrument(0, g_setCh[i], g_setPc[i]);
           g_midi.setNoteOn(g_setCh[i], g_tuneKey, g_setLevel[i]);
         }
         M5.Display.fillRoundRect(128, 75, 64, 30, 4, Orange);
