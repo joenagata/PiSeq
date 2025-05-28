@@ -1,57 +1,80 @@
----
 # PiSeq : Pitch Interval Sequencer
----
+[<img src="images/PiSeq.jpg" width=500>](images/PiSeq.jpg)
 
-ランダムな要素を取り込んだブロックの組み合わせによるMIDIシーケンサです。
+A MIDI sequencer built from block combinations with random elements.
 
-### 主な特徴
-- 曲を３階層のブロック（ソング、シーケンス、パターン）で管理
-- シーケンス、パターンはその単位で音程を上下にシフト可能
-- 一部のシーケンス、パターンはランダムに選択することが可能
-- MicroSDカードに曲をセーブ、ロードすることが可能
+### Key Features
+- Manage songs in a three-layer block structure: Song, Sequence, and Pattern
+- Pitch can be shifted for each sequence or pattern independently
+- Some sequences and patterns can be selected randomly
+- Songs can be saved to and loaded from a MicroSD card
 
-### 曲の構造
-一つの曲は１〜８の番号で表されるソングで構成され、それらを最大８つ並べて順に演奏し、最後まで行くと先頭に戻ります。
+### Song Structure
+A song consists of Song Blocks numbered 1 to 8. Up to 8 blocks can be arranged in sequence, and playback loops back to the beginning after reaching the end.
 
-例えば、`１、２、１、２、３`と設定すると、`１、２、１、２、３、１、２、１、２、３、･･･`と演奏されます。
+For example, if set to `1, 2, 1, 2, 3`, playback will follow:
+`1, 2, 1, 2, 3, 1, 2, 1, 2, 3, ...`
 
-一つのソングはA〜Zのシーケンスで構成され、それらを最大８つ並べて順に演奏します。
-シーケンスA〜Rは、後述のパターンの組み合わせで演奏内容が定義されます。
-シーケンスS〜Zは、ランダムの要素があり、シーケンスA〜Hのどれかが選ばれて演奏されます。
-ソングで８つのシーケンスを並べたときに、それぞれの音程を上下にシフトする量を設定できます。
+Each Song Block is made up of sequences labeled A–Z. Up to 8 sequences can be arranged and played in order.
 
-例えば、`A：０、B：０、A：２、B：２`と設定すると、A、Bを演奏した後、次のA、Bは設定したスケールで２段階音程を高くして演奏します。
+- Sequences A–R define their content using a combination of patterns (explained below).
+- Sequences S–Z include random behavior, where one of Sequences A–H is selected at random for playback.
+- When arranging up to 8 sequences in a song, each sequence can have an independent pitch shift amount.
 
-一つのシーケンスはa〜zのパターンで構成され、それらを最大８つ並べて順に演奏します。
-パターンa〜rは、後述のパターンの組み合わせで演奏内容が定義されます。
-パターンs〜zは、ランダムの要素があり、シーケンスa〜hのどれかが選ばれて演奏されます。
-シーケンスで８つのパターンを並べたときに、それぞれの音程を上下にシフトする量を設定できます。
+For example, setting:
+`A: 0, B: 0, A: +2, B: +2`
+will result in A and B being played normally the first time, and then played two steps higher the next time using the selected scale.
 
-例えば、`a：０、b：０、a：２、b：２`と設定すると、a、bを演奏した後、次のa、bは設定したスケールで２段階音程を高くして演奏します。
-このとき、ソングの設定でシーケンス自体の音程をシフトしている場合は、それも合わせて調整されます。
+Each Sequence consists of patterns labeled a–z. Up to 8 patterns can be arranged and played in sequence.
 
-一つのパターンは、四分音符一拍の時間で演奏されますが、演奏の仕方を以下から設定します。
-四分音符×１、八分音符×２、付点十六分音符×３、十六分音符×４
-それぞれについても音程を上下にシフトする量を設定できます。
+- Patterns a–r define their content explicitly.
+- Patterns s–z include randomness and randomly select one of Patterns a–h.
+- Each pattern can also be assigned a pitch shift value within the sequence.
 
-### ランダムな演奏
-シーケンスのS〜Z、パターンのs〜zはランダム演奏を行うためのものです。
-A〜H（a〜h）を選ぶ確率の重みづけを設定できます。
+For example, setting:
+`a: 0, b: 0, a: +2, b: +2`
+means that after playing a and b normally, the next a and b will be played two steps higher in the scale.
+If the song’s sequence has a pitch shift setting, it will be combined with this.
 
-例えば、`A：３、B：１、それ以外は０`と設定すると、75%の確率でAが、25%の確率でBが選ばれます。
+Each Pattern plays over one quarter note (1 beat), but its rhythm can be selected from the following:
 
-また、音程のシフトも−３〜＋３まで確率の重みづけを設定できます。
-例えば、`＋１：３、＋２：１、それ以外は０`と設定すると、75%の確率で＋１が、25%の確率で＋２が選ばれます。
+- 1× quarter note
+- 2× eighth notes
+- 3× dotted sixteenth notes
+- 4× sixteenth notes
 
-### スケール
-複数のスケールから選択することができます。上述の音程のシフトは選択したスケールに対して１段階、２段階と行います。
-したがって、２段階音程を高くするときに、スケールがクロマティックの場合はD→Eに、メジャーの場合は、D→Fに、メジャー・ペンタトニックの場合は、D→Gになります。
-つまり、スケール以外の音を出すことはありません。
+Each of these note positions can also have an individual pitch shift amount assigned.
 
-例
-スケール |  | 音名
+### Random Playback
+
+
+Sequences S–Z and patterns s–z are used for random playback.
+You can assign weightings for the probability of selecting from A–H (or a–h).
+
+For example, setting:
+`A: 3, B: 1, all others: 0`
+means A will be selected 75% of the time, and B 25%.
+
+You can also assign weighted probabilities for pitch shifts from −3 to +3.
+For example, setting:
+`+1: 3, +2: 1, all others: 0`
+means a +1 shift is selected 75% of the time, and +2 shift 25%.
+
+### Scales
+You can choose from multiple musical scales. The pitch shifts mentioned above apply to the selected scale, moving up/down in scale steps.
+
+So for a 2-step pitch increase from D:
+
+- In the Chromatic scale : D -> E
+- In the Major scale : D -> F
+- In the Major Pentatonic scale : D -> G
+
+This ensures that notes outside the selected scale are never played.
+
+Examples:
+Scale | Description | Notes
 --- | --- | ---
-クロマティック | 半音単位の12音階 | C,C#,D,D#,E,F,F#,G,G#,A,A#,B
-メジャー | ７音階 | C,D,E,F,G,A,B
-メジャー・ペンタトニック | ５音階 | C,D,E,G,A
+Chromatic | 12-tone (semitones) | C,C#,D,D#,E,F,F#,G,G#,A,A#,B
+Major | 7-note scale | C,D,E,F,G,A,B
+Major Pentatonic | 5-note scale | C,D,E,G,A
 
