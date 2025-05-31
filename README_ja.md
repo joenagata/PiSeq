@@ -14,6 +14,7 @@
 ### ハード構成
 - M5Stack CoreS3 SE
 - M5GO Battery Bottom3
+- Battery Bottom Charging Base
 - Midi Unit with DIN Connector (SAM2695)
 - 8-Encoder Unit (STM32F030)
 

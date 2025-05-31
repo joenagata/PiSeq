@@ -11,6 +11,13 @@ A MIDI sequencer built from block combinations with random elements.
 - Some sequences and patterns can be selected randomly
 - Songs can be saved to and loaded from a MicroSD card
 
+### Hardware
+- M5Stack CoreS3 SE
+- M5GO Battery Bottom3
+- Battery Bottom Charging Base
+- Midi Unit with DIN Connector (SAM2695)
+- 8-Encoder Unit (STM32F030)
+
 ### Song Structure
 <img src="images/play.bmp" align="right" width="240">
 A song consists of Song Blocks numbered 1 to 8. Up to 8 blocks can be arranged in sequence, and playback loops back to the beginning after reaching the end.
