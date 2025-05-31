@@ -1125,40 +1125,39 @@ void dispPagePlay() {
   M5.Display.drawString("File", 288, 227);
 
   // LED
-  for (int i = 0; i < 8; i++) {
-    if (g_select == 0) {
-      switch (i) {
-        case 7:
-          g_encoder.setLEDColor(i, LedCyan);
-          break;
-        case 6:
-          g_encoder.setLEDColor(i, LedPurple);
-          break;
-        case 5:
-          g_encoder.setLEDColor(i, LedGreen);
-          break;
-        case 4:
-        case 3:
-        case 2:
-        case 1:
-        case 0:
-          g_encoder.setLEDColor(i, LedBlack);
-          break;
-      }
-    } else {
-      switch (i) {
-        case 7:
-        case 6:
-        case 5:
-        case 4:
-        case 3:
-        case 2:
-        case 1:
-        case 0:
-          g_encoder.setLEDColor(i, LedCyan);
-          break;
-      }
-    }
+  if (g_select == 0) {
+    g_encoder.setLEDColor(7, LedCyan);
+    delay(10);
+    g_encoder.setLEDColor(6, LedPurple);
+    delay(10);
+    g_encoder.setLEDColor(5, LedGreen);
+    delay(10);
+    g_encoder.setLEDColor(4, LedBlack);
+    delay(10);
+    g_encoder.setLEDColor(3, LedBlack);
+    delay(10);
+    g_encoder.setLEDColor(2, LedBlack);
+    delay(10);
+    g_encoder.setLEDColor(1, LedBlack);
+    delay(10);
+    g_encoder.setLEDColor(0, LedBlack);
+    delay(10);
+  } else {
+    g_encoder.setLEDColor(7, LedCyan);
+    delay(10);
+    g_encoder.setLEDColor(6, LedCyan);
+    delay(10);
+    g_encoder.setLEDColor(5, LedCyan);
+    delay(10);
+    g_encoder.setLEDColor(4, LedCyan);
+    delay(10);
+    g_encoder.setLEDColor(3, LedCyan);
+    delay(10);
+    g_encoder.setLEDColor(2, LedCyan);
+    delay(10);
+    g_encoder.setLEDColor(1, LedCyan);
+    delay(10);
+    g_encoder.setLEDColor(0, LedCyan);
     delay(10);
   }
 }
@@ -1447,49 +1446,56 @@ void dispPageSong() {
   M5.Display.drawString("Ret", 112, 226);
 
   // LED
-  for (int i = 0; i < 8; i++) {
-    if (g_select == 0) {
-      switch (i) {
-        case 7:
-          g_encoder.setLEDColor(i, LedCyan);
-          break;
-        case 6:
-        case 5:
-        case 4:
-        case 3:
-        case 2:
-        case 1:
-        case 0:
-          g_encoder.setLEDColor(i, LedBlack);
-          break;
-      }
-    } else if (g_select == 1) {
-      switch (i) {
-        case 7:
-        case 6:
-        case 5:
-        case 4:
-        case 3:
-        case 2:
-        case 1:
-        case 0:
-          g_encoder.setLEDColor(i, LedPurple);
-          break;
-      }
-    } else {
-      switch (i) {
-        case 7:
-        case 6:
-        case 5:
-        case 4:
-        case 3:
-        case 2:
-        case 1:
-        case 0:
-          g_encoder.setLEDColor(i, (7 - i < g_songLen[g_curSong]) ? LedGreen : LedBlack);
-          break;
-      }
-    }
+  if (g_select == 0) {
+    g_encoder.setLEDColor(7, LedCyan);
+    delay(10);
+    g_encoder.setLEDColor(6, LedBlack);
+    delay(10);
+    g_encoder.setLEDColor(5, LedBlack);
+    delay(10);
+    g_encoder.setLEDColor(4, LedBlack);
+    delay(10);
+    g_encoder.setLEDColor(3, LedBlack);
+    delay(10);
+    g_encoder.setLEDColor(2, LedBlack);
+    delay(10);
+    g_encoder.setLEDColor(1, LedBlack);
+    delay(10);
+    g_encoder.setLEDColor(0, LedBlack);
+    delay(10);
+  } else if (g_select == 1) {
+    g_encoder.setLEDColor(7, LedPurple);
+    delay(10);
+    g_encoder.setLEDColor(6, LedPurple);
+    delay(10);
+    g_encoder.setLEDColor(5, LedPurple);
+    delay(10);
+    g_encoder.setLEDColor(4, LedPurple);
+    delay(10);
+    g_encoder.setLEDColor(3, LedPurple);
+    delay(10);
+    g_encoder.setLEDColor(2, LedPurple);
+    delay(10);
+    g_encoder.setLEDColor(1, LedPurple);
+    delay(10);
+    g_encoder.setLEDColor(0, LedPurple);
+    delay(10);
+  } else {
+    g_encoder.setLEDColor(7, (0 < g_songLen[g_curSong]) ? LedGreen : LedBlack);
+    delay(10);
+    g_encoder.setLEDColor(6, (1 < g_songLen[g_curSong]) ? LedGreen : LedBlack);
+    delay(10);
+    g_encoder.setLEDColor(5, (2 < g_songLen[g_curSong]) ? LedGreen : LedBlack);
+    delay(10);
+    g_encoder.setLEDColor(4, (3 < g_songLen[g_curSong]) ? LedGreen : LedBlack);
+    delay(10);
+    g_encoder.setLEDColor(3, (4 < g_songLen[g_curSong]) ? LedGreen : LedBlack);
+    delay(10);
+    g_encoder.setLEDColor(2, (5 < g_songLen[g_curSong]) ? LedGreen : LedBlack);
+    delay(10);
+    g_encoder.setLEDColor(1, (6 < g_songLen[g_curSong]) ? LedGreen : LedBlack);
+    delay(10);
+    g_encoder.setLEDColor(0, (7 < g_songLen[g_curSong]) ? LedGreen : LedBlack);
     delay(10);
   }
 }
@@ -1710,49 +1716,56 @@ void dispPageSeq() {
   M5.Display.drawString("Rnd", 192, 226);
 
   // LED
-  for (int i = 0; i < 8; i++) {
-    if (g_select == 0) {
-      switch (i) {
-        case 7:
-          g_encoder.setLEDColor(i, LedCyan);
-          break;
-        case 6:
-        case 5:
-        case 4:
-        case 3:
-        case 2:
-        case 1:
-        case 0:
-          g_encoder.setLEDColor(i, LedBlack);
-          break;
-      }
-    } else if (g_select == 1) {
-      switch (i) {
-        case 7:
-        case 6:
-        case 5:
-        case 4:
-        case 3:
-        case 2:
-        case 1:
-        case 0:
-          g_encoder.setLEDColor(i, LedPurple);
-          break;
-      }
-    } else {
-      switch (i) {
-        case 7:
-        case 6:
-        case 5:
-        case 4:
-        case 3:
-        case 2:
-        case 1:
-        case 0:
-          g_encoder.setLEDColor(i, (7 - i < g_seqLen[g_curSeq]) ? LedGreen : LedBlack);
-          break;
-      }
-    }
+  if (g_select == 0) {
+    g_encoder.setLEDColor(7, LedCyan);
+    delay(10);
+    g_encoder.setLEDColor(6, LedBlack);
+    delay(10);
+    g_encoder.setLEDColor(5, LedBlack);
+    delay(10);
+    g_encoder.setLEDColor(4, LedBlack);
+    delay(10);
+    g_encoder.setLEDColor(3, LedBlack);
+    delay(10);
+    g_encoder.setLEDColor(2, LedBlack);
+    delay(10);
+    g_encoder.setLEDColor(1, LedBlack);
+    delay(10);
+    g_encoder.setLEDColor(0, LedBlack);
+    delay(10);
+  } else if (g_select == 1) {
+    g_encoder.setLEDColor(7, LedPurple);
+    delay(10);
+    g_encoder.setLEDColor(6, LedPurple);
+    delay(10);
+    g_encoder.setLEDColor(5, LedPurple);
+    delay(10);
+    g_encoder.setLEDColor(4, LedPurple);
+    delay(10);
+    g_encoder.setLEDColor(3, LedPurple);
+    delay(10);
+    g_encoder.setLEDColor(2, LedPurple);
+    delay(10);
+    g_encoder.setLEDColor(1, LedPurple);
+    delay(10);
+    g_encoder.setLEDColor(0, LedPurple);
+    delay(10);
+  } else {
+    g_encoder.setLEDColor(7, (0 < g_seqLen[g_curSeq]) ? LedGreen : LedBlack);
+    delay(10);
+    g_encoder.setLEDColor(6, (1 < g_seqLen[g_curSeq]) ? LedGreen : LedBlack);
+    delay(10);
+    g_encoder.setLEDColor(5, (2 < g_seqLen[g_curSeq]) ? LedGreen : LedBlack);
+    delay(10);
+    g_encoder.setLEDColor(4, (3 < g_seqLen[g_curSeq]) ? LedGreen : LedBlack);
+    delay(10);
+    g_encoder.setLEDColor(3, (4 < g_seqLen[g_curSeq]) ? LedGreen : LedBlack);
+    delay(10);
+    g_encoder.setLEDColor(2, (5 < g_seqLen[g_curSeq]) ? LedGreen : LedBlack);
+    delay(10);
+    g_encoder.setLEDColor(1, (6 < g_seqLen[g_curSeq]) ? LedGreen : LedBlack);
+    delay(10);
+    g_encoder.setLEDColor(0, (7 < g_seqLen[g_curSeq]) ? LedGreen : LedBlack);
     delay(10);
   }
 }
@@ -2052,51 +2065,56 @@ void dispPageSeqRnd() {
   M5.Display.drawString("Std", 192, 226);
 
   // LED
-  for (int i = 0; i < 8; i++) {
-    if (g_select == 0) {
-      switch (i) {
-        case 7:
-          g_encoder.setLEDColor(i, LedCyan);
-          break;
-        case 6:
-        case 5:
-        case 4:
-        case 3:
-        case 2:
-        case 1:
-        case 0:
-          g_encoder.setLEDColor(i, LedBlack);
-          break;
-      }
-    } else if (g_select == 1) {
-      switch (i) {
-        case 7:
-        case 6:
-        case 5:
-        case 4:
-        case 3:
-        case 2:
-        case 1:
-        case 0:
-          g_encoder.setLEDColor(i, LedPurple);
-          break;
-      }
-    } else {
-      switch (i) {
-        case 7:
-        case 6:
-        case 5:
-        case 4:
-        case 3:
-        case 2:
-        case 1:
-          g_encoder.setLEDColor(i, LedGreen);
-          break;
-        case 0:
-          g_encoder.setLEDColor(i, LedBlack);
-          break;
-      }
-    }
+  if (g_select == 0) {
+    g_encoder.setLEDColor(7, LedCyan);
+    delay(10);
+    g_encoder.setLEDColor(6, LedBlack);
+    delay(10);
+    g_encoder.setLEDColor(5, LedBlack);
+    delay(10);
+    g_encoder.setLEDColor(4, LedBlack);
+    delay(10);
+    g_encoder.setLEDColor(3, LedBlack);
+    delay(10);
+    g_encoder.setLEDColor(2, LedBlack);
+    delay(10);
+    g_encoder.setLEDColor(1, LedBlack);
+    delay(10);
+    g_encoder.setLEDColor(0, LedBlack);
+    delay(10);
+  } else if (g_select == 1) {
+    g_encoder.setLEDColor(7, LedPurple);
+    delay(10);
+    g_encoder.setLEDColor(6, LedPurple);
+    delay(10);
+    g_encoder.setLEDColor(5, LedPurple);
+    delay(10);
+    g_encoder.setLEDColor(4, LedPurple);
+    delay(10);
+    g_encoder.setLEDColor(3, LedPurple);
+    delay(10);
+    g_encoder.setLEDColor(2, LedPurple);
+    delay(10);
+    g_encoder.setLEDColor(1, LedPurple);
+    delay(10);
+    g_encoder.setLEDColor(0, LedPurple);
+    delay(10);
+  } else {
+    g_encoder.setLEDColor(7, LedGreen);
+    delay(10);
+    g_encoder.setLEDColor(6, LedGreen);
+    delay(10);
+    g_encoder.setLEDColor(5, LedGreen);
+    delay(10);
+    g_encoder.setLEDColor(4, LedGreen);
+    delay(10);
+    g_encoder.setLEDColor(3, LedGreen);
+    delay(10);
+    g_encoder.setLEDColor(2, LedGreen);
+    delay(10);
+    g_encoder.setLEDColor(1, LedGreen);
+    delay(10);
+    g_encoder.setLEDColor(0, LedBlack);
     delay(10);
   }
 }
@@ -2300,49 +2318,56 @@ void dispPagePat() {
   M5.Display.drawString("Rnd", 192, 226);
 
   // LED
-  for (int i = 0; i < 8; i++) {
-    if (g_select == 0) {
-      switch (i) {
-        case 7:
-        case 6:
-          g_encoder.setLEDColor(i, LedCyan);
-          break;
-        case 5:
-        case 4:
-        case 3:
-        case 2:
-        case 1:
-        case 0:
-          g_encoder.setLEDColor(i, LedBlack);
-          break;
-      }
-    } else if (g_select == 1) {
-      switch (i) {
-        case 7:
-        case 6:
-        case 5:
-        case 4:
-        case 3:
-        case 2:
-        case 1:
-        case 0:
-          g_encoder.setLEDColor(i, (7 - i <= g_patRtmDur[g_curPat]) ? LedPurple : LedBlack);
-          break;
-      }
-    } else {
-      switch (i) {
-        case 7:
-        case 6:
-        case 5:
-        case 4:
-        case 3:
-        case 2:
-        case 1:
-        case 0:
-          g_encoder.setLEDColor(i, (7 - i <= g_patRtmDur[g_curPat]) ? LedGreen : LedBlack);
-          break;
-      }
-    }
+  if (g_select == 0) {
+    g_encoder.setLEDColor(7, LedCyan);
+    delay(10);
+    g_encoder.setLEDColor(6, LedCyan);
+    delay(10);
+    g_encoder.setLEDColor(5, LedBlack);
+    delay(10);
+    g_encoder.setLEDColor(4, LedBlack);
+    delay(10);
+    g_encoder.setLEDColor(3, LedBlack);
+    delay(10);
+    g_encoder.setLEDColor(2, LedBlack);
+    delay(10);
+    g_encoder.setLEDColor(1, LedBlack);
+    delay(10);
+    g_encoder.setLEDColor(0, LedBlack);
+    delay(10);
+  } else if (g_select == 1) {
+    g_encoder.setLEDColor(7, (0 <= g_patRtmDur[g_curPat]) ? LedPurple : LedBlack);
+    delay(10);
+    g_encoder.setLEDColor(6, (1 <= g_patRtmDur[g_curPat]) ? LedPurple : LedBlack);
+    delay(10);
+    g_encoder.setLEDColor(5, (2 <= g_patRtmDur[g_curPat]) ? LedPurple : LedBlack);
+    delay(10);
+    g_encoder.setLEDColor(4, (3 <= g_patRtmDur[g_curPat]) ? LedPurple : LedBlack);
+    delay(10);
+    g_encoder.setLEDColor(3, (4 <= g_patRtmDur[g_curPat]) ? LedPurple : LedBlack);
+    delay(10);
+    g_encoder.setLEDColor(2, (5 <= g_patRtmDur[g_curPat]) ? LedPurple : LedBlack);
+    delay(10);
+    g_encoder.setLEDColor(1, (6 <= g_patRtmDur[g_curPat]) ? LedPurple : LedBlack);
+    delay(10);
+    g_encoder.setLEDColor(0, (7 <= g_patRtmDur[g_curPat]) ? LedPurple : LedBlack);
+    delay(10);
+  } else {
+    g_encoder.setLEDColor(7, (0 <= g_patRtmDur[g_curPat]) ? LedGreen : LedBlack);
+    delay(10);
+    g_encoder.setLEDColor(6, (1 <= g_patRtmDur[g_curPat]) ? LedGreen : LedBlack);
+    delay(10);
+    g_encoder.setLEDColor(5, (2 <= g_patRtmDur[g_curPat]) ? LedGreen : LedBlack);
+    delay(10);
+    g_encoder.setLEDColor(4, (3 <= g_patRtmDur[g_curPat]) ? LedGreen : LedBlack);
+    delay(10);
+    g_encoder.setLEDColor(3, (4 <= g_patRtmDur[g_curPat]) ? LedGreen : LedBlack);
+    delay(10);
+    g_encoder.setLEDColor(2, (5 <= g_patRtmDur[g_curPat]) ? LedGreen : LedBlack);
+    delay(10);
+    g_encoder.setLEDColor(1, (6 <= g_patRtmDur[g_curPat]) ? LedGreen : LedBlack);
+    delay(10);
+    g_encoder.setLEDColor(0, (7 <= g_patRtmDur[g_curPat]) ? LedGreen : LedBlack);
     delay(10);
   }
 }
@@ -2616,51 +2641,56 @@ void dispPagePatRnd() {
   M5.Display.drawString("Std", 192, 226);
 
   // LED
-  for (int i = 0; i < 8; i++) {
-    if (g_select == 0) {
-      switch (i) {
-        case 7:
-          g_encoder.setLEDColor(i, LedCyan);
-          break;
-        case 6:
-        case 5:
-        case 4:
-        case 3:
-        case 2:
-        case 1:
-        case 0:
-          g_encoder.setLEDColor(i, LedBlack);
-          break;
-      }
-    } else if (g_select == 1) {
-      switch (i) {
-        case 7:
-        case 6:
-        case 5:
-        case 4:
-        case 3:
-        case 2:
-        case 1:
-        case 0:
-          g_encoder.setLEDColor(i, LedPurple);
-          break;
-      }
-    } else {
-      switch (i) {
-        case 7:
-        case 6:
-        case 5:
-        case 4:
-        case 3:
-        case 2:
-        case 1:
-          g_encoder.setLEDColor(i, LedGreen);
-          break;
-        case 0:
-          g_encoder.setLEDColor(i, LedBlack);
-          break;
-      }
-    }
+  if (g_select == 0) {
+    g_encoder.setLEDColor(7, LedCyan);
+    delay(10);
+    g_encoder.setLEDColor(6, LedBlack);
+    delay(10);
+    g_encoder.setLEDColor(5, LedBlack);
+    delay(10);
+    g_encoder.setLEDColor(4, LedBlack);
+    delay(10);
+    g_encoder.setLEDColor(3, LedBlack);
+    delay(10);
+    g_encoder.setLEDColor(2, LedBlack);
+    delay(10);
+    g_encoder.setLEDColor(1, LedBlack);
+    delay(10);
+    g_encoder.setLEDColor(0, LedBlack);
+    delay(10);
+  } else if (g_select == 1) {
+    g_encoder.setLEDColor(7, LedPurple);
+    delay(10);
+    g_encoder.setLEDColor(6, LedPurple);
+    delay(10);
+    g_encoder.setLEDColor(5, LedPurple);
+    delay(10);
+    g_encoder.setLEDColor(4, LedPurple);
+    delay(10);
+    g_encoder.setLEDColor(3, LedPurple);
+    delay(10);
+    g_encoder.setLEDColor(2, LedPurple);
+    delay(10);
+    g_encoder.setLEDColor(1, LedPurple);
+    delay(10);
+    g_encoder.setLEDColor(0, LedPurple);
+    delay(10);
+  } else {
+    g_encoder.setLEDColor(7, LedGreen);
+    delay(10);
+    g_encoder.setLEDColor(6, LedGreen);
+    delay(10);
+    g_encoder.setLEDColor(5, LedGreen);
+    delay(10);
+    g_encoder.setLEDColor(4, LedGreen);
+    delay(10);
+    g_encoder.setLEDColor(3, LedGreen);
+    delay(10);
+    g_encoder.setLEDColor(2, LedGreen);
+    delay(10);
+    g_encoder.setLEDColor(1, LedGreen);
+    delay(10);
+    g_encoder.setLEDColor(0, LedBlack);
     delay(10);
   }
 }
@@ -2808,21 +2838,22 @@ void dispPageFile() {
   M5.Display.drawString("Ret", 32, 226);
 
   // LED
-  for (int i = 0; i < 8; i++) {
-    switch (i) {
-      case 7:
-      case 6:
-      case 5:
-      case 4:
-      case 3:
-      case 2:
-      case 1:
-      case 0:
-        g_encoder.setLEDColor(i, LedBlack);
-        break;
-    }
-    delay(10);
-  }
+  g_encoder.setLEDColor(7, LedBlack);
+  delay(10);
+  g_encoder.setLEDColor(6, LedBlack);
+  delay(10);
+  g_encoder.setLEDColor(5, LedBlack);
+  delay(10);
+  g_encoder.setLEDColor(4, LedBlack);
+  delay(10);
+  g_encoder.setLEDColor(3, LedBlack);
+  delay(10);
+  g_encoder.setLEDColor(2, LedBlack);
+  delay(10);
+  g_encoder.setLEDColor(1, LedBlack);
+  delay(10);
+  g_encoder.setLEDColor(0, LedBlack);
+  delay(10);
 }
 
 // ************************************************** **************************************************
@@ -2934,23 +2965,22 @@ void dispPageLoad() {
   g_curFile = g_fileList[2];
 
   // LED
-  for (int i = 0; i < 8; i++) {
-    switch (i) {
-      case 7:
-        g_encoder.setLEDColor(i, LedCyan);
-        break;
-      case 6:
-      case 5:
-      case 4:
-      case 3:
-      case 2:
-      case 1:
-      case 0:
-        g_encoder.setLEDColor(i, LedBlack);
-        break;
-    }
-    delay(10);
-  }
+  g_encoder.setLEDColor(7, LedCyan);
+  delay(10);
+  g_encoder.setLEDColor(6, LedBlack);
+  delay(10);
+  g_encoder.setLEDColor(5, LedBlack);
+  delay(10);
+  g_encoder.setLEDColor(4, LedBlack);
+  delay(10);
+  g_encoder.setLEDColor(3, LedBlack);
+  delay(10);
+  g_encoder.setLEDColor(2, LedBlack);
+  delay(10);
+  g_encoder.setLEDColor(1, LedBlack);
+  delay(10);
+  g_encoder.setLEDColor(0, LedBlack);
+  delay(10);
 }
 
 // ************************************************** **************************************************
@@ -3068,23 +3098,22 @@ void dispPageSave() {
   g_curFile = g_fileList[g_fileDisp + 2];
 
   // LED
-  for (int i = 0; i < 8; i++) {
-    switch (i) {
-      case 7:
-        g_encoder.setLEDColor(i, LedCyan);
-        break;
-      case 6:
-      case 5:
-      case 4:
-      case 3:
-      case 2:
-      case 1:
-      case 0:
-        g_encoder.setLEDColor(i, LedBlack);
-        break;
-    }
-    delay(10);
-  }
+  g_encoder.setLEDColor(7, LedCyan);
+  delay(10);
+  g_encoder.setLEDColor(6, LedBlack);
+  delay(10);
+  g_encoder.setLEDColor(5, LedBlack);
+  delay(10);
+  g_encoder.setLEDColor(4, LedBlack);
+  delay(10);
+  g_encoder.setLEDColor(3, LedBlack);
+  delay(10);
+  g_encoder.setLEDColor(2, LedBlack);
+  delay(10);
+  g_encoder.setLEDColor(1, LedBlack);
+  delay(10);
+  g_encoder.setLEDColor(0, LedBlack);
+  delay(10);
 }
 
 // ************************************************** **************************************************
@@ -3195,23 +3224,22 @@ void dispPageRename() {
   g_curFile = g_fileList[2];
 
   // LED
-  for (int i = 0; i < 8; i++) {
-    switch (i) {
-      case 7:
-        g_encoder.setLEDColor(i, LedCyan);
-        break;
-      case 6:
-      case 5:
-      case 4:
-      case 3:
-      case 2:
-      case 1:
-      case 0:
-        g_encoder.setLEDColor(i, LedBlack);
-        break;
-    }
-    delay(10);
-  }
+  g_encoder.setLEDColor(7, LedCyan);
+  delay(10);
+  g_encoder.setLEDColor(6, LedBlack);
+  delay(10);
+  g_encoder.setLEDColor(5, LedBlack);
+  delay(10);
+  g_encoder.setLEDColor(4, LedBlack);
+  delay(10);
+  g_encoder.setLEDColor(3, LedBlack);
+  delay(10);
+  g_encoder.setLEDColor(2, LedBlack);
+  delay(10);
+  g_encoder.setLEDColor(1, LedBlack);
+  delay(10);
+  g_encoder.setLEDColor(0, LedBlack);
+  delay(10);
 }
 
 // ************************************************** **************************************************
@@ -3310,23 +3338,22 @@ void dispPageDelete() {
   g_curFile = g_fileList[2];
 
   // LED
-  for (int i = 0; i < 8; i++) {
-    switch (i) {
-      case 7:
-        g_encoder.setLEDColor(i, LedCyan);
-        break;
-      case 6:
-      case 5:
-      case 4:
-      case 3:
-      case 2:
-      case 1:
-      case 0:
-        g_encoder.setLEDColor(i, LedBlack);
-        break;
-    }
-    delay(10);
-  }
+  g_encoder.setLEDColor(7, LedCyan);
+  delay(10);
+  g_encoder.setLEDColor(6, LedBlack);
+  delay(10);
+  g_encoder.setLEDColor(5, LedBlack);
+  delay(10);
+  g_encoder.setLEDColor(4, LedBlack);
+  delay(10);
+  g_encoder.setLEDColor(3, LedBlack);
+  delay(10);
+  g_encoder.setLEDColor(2, LedBlack);
+  delay(10);
+  g_encoder.setLEDColor(1, LedBlack);
+  delay(10);
+  g_encoder.setLEDColor(0, LedBlack);
+  delay(10);
 }
 
 // ************************************************** **************************************************
@@ -3450,25 +3477,22 @@ void dispPageInput() {
   g_encoder.setEncoderValue(6, g_nameData[0] * 2);
 
   // LED
-  for (int i = 0; i < 8; i++) {
-    switch (i) {
-      case 7:
-        g_encoder.setLEDColor(i, LedCyan);
-        break;
-      case 6:
-        g_encoder.setLEDColor(i, LedWhite);
-        break;
-      case 5:
-      case 4:
-      case 3:
-      case 2:
-      case 1:
-      case 0:
-        g_encoder.setLEDColor(i, LedBlack);
-        break;
-    }
-    delay(10);
-  }
+  g_encoder.setLEDColor(7, LedCyan);
+  delay(10);
+  g_encoder.setLEDColor(6, LedWhite);
+  delay(10);
+  g_encoder.setLEDColor(5, LedBlack);
+  delay(10);
+  g_encoder.setLEDColor(4, LedBlack);
+  delay(10);
+  g_encoder.setLEDColor(3, LedBlack);
+  delay(10);
+  g_encoder.setLEDColor(2, LedBlack);
+  delay(10);
+  g_encoder.setLEDColor(1, LedBlack);
+  delay(10);
+  g_encoder.setLEDColor(0, LedBlack);
+  delay(10);
 }
 
 // ************************************************** **************************************************
@@ -3666,6 +3690,59 @@ void dispPageSet1() {
   M5.Display.drawString("Tune", 288, 15);
 
   // LED
+  if (g_select == 0) {
+    g_encoder.setLEDColor(7, LedBlack);
+    delay(10);
+    g_encoder.setLEDColor(6, LedCyan);
+    delay(10);
+    g_encoder.setLEDColor(5, LedCyan);
+    delay(10);
+    g_encoder.setLEDColor(4, LedCyan);
+    delay(10);
+    g_encoder.setLEDColor(3, LedBlack);
+    delay(10);
+    g_encoder.setLEDColor(2, LedBlue);
+    delay(10);
+    g_encoder.setLEDColor(1, LedBlue);
+    delay(10);
+    g_encoder.setLEDColor(0, LedBlue);
+    delay(10);
+  } else if (g_select == 1) {
+    g_encoder.setLEDColor(7, LedPurple);
+    delay(10);
+    g_encoder.setLEDColor(6, LedPurple);
+    delay(10);
+    g_encoder.setLEDColor(5, LedPurple);
+    delay(10);
+    g_encoder.setLEDColor(4, LedPurple);
+    delay(10);
+    g_encoder.setLEDColor(3, LedRed);
+    delay(10);
+    g_encoder.setLEDColor(2, LedRed);
+    delay(10);
+    g_encoder.setLEDColor(1, LedRed);
+    delay(10);
+    g_encoder.setLEDColor(0, LedRed);
+    delay(10);
+  } else {
+    g_encoder.setLEDColor(7, LedGreen);
+    delay(10);
+    g_encoder.setLEDColor(6, LedGreen);
+    delay(10);
+    g_encoder.setLEDColor(5, LedGreen);
+    delay(10);
+    g_encoder.setLEDColor(4, LedGreen);
+    delay(10);
+    g_encoder.setLEDColor(3, LedBlack);
+    delay(10);
+    g_encoder.setLEDColor(2, LedBlack);
+    delay(10);
+    g_encoder.setLEDColor(1, LedBlack);
+    delay(10);
+    g_encoder.setLEDColor(0, LedBlack);
+    delay(10);
+  }
+
   for (int i = 0; i < 8; i++) {
     if (g_select == 0) {
       switch (i) {
@@ -3886,23 +3963,22 @@ void dispPageSet2() {
   M5.Display.drawString("Ret", 112, 226);
 
   // LED
-  for (int i = 0; i < 8; i++) {
-    switch (i) {
-      case 7:
-        g_encoder.setLEDColor(i, LedCyan);
-        break;
-      case 6:
-      case 5:
-      case 4:
-      case 3:
-      case 2:
-      case 1:
-      case 0:
-        g_encoder.setLEDColor(i, LedBlack);
-        break;
-    }
-    delay(10);
-  }
+  g_encoder.setLEDColor(7, LedCyan);
+  delay(10);
+  g_encoder.setLEDColor(6, LedBlack);
+  delay(10);
+  g_encoder.setLEDColor(5, LedBlack);
+  delay(10);
+  g_encoder.setLEDColor(4, LedBlack);
+  delay(10);
+  g_encoder.setLEDColor(3, LedBlack);
+  delay(10);
+  g_encoder.setLEDColor(2, LedBlack);
+  delay(10);
+  g_encoder.setLEDColor(1, LedBlack);
+  delay(10);
+  g_encoder.setLEDColor(0, LedBlack);
+  delay(10);
 }
 
 // ************************************************** **************************************************
