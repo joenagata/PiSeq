@@ -1,6 +1,8 @@
 # PiSeq : Pitch Interval Sequencer
 [<img src="images/PiSeq.jpg" width=500>](images/PiSeq.jpg)
 
+[🇺🇸 English version here](README.md)
+
 ランダムな要素を取り込んだブロックの組み合わせによるMIDIシーケンサです。
 
 ### 主な特徴
