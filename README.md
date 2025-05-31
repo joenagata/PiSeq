@@ -97,7 +97,11 @@ Blues | 6-note scale | C,Eb,F,F#,G,Bb
 Whole Tone | 6-note scale | C,D,E,F#,G#,A#
 Diminished | 8-note scale | C,Db,Eb,E,Gb,G,A,Bb
 
-
+### Accompaniment
+Accompaniment pitches can be output from three MIDI channels corresponding to the main sequencer.
+You can choose from quarter notes, half notes, and whole notes, and the pitch is shifted from the main sequencer pitch when it is pronounced.
+For example, if you set the pitches to be an eighth, a sixth, and a fourth lower, you can play a triad one octave lower.
+When you don't want to hear any sound, set the Level to 0.
 
 
 
