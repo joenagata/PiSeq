@@ -382,6 +382,7 @@ void evalTick() {
   int seqPitch = 0;
   int patPitch = 0;
   int rtmPitch = 0;
+  int rtm = 0;
 
   if (g_playMode == MidiPlay) {
     int t = ++g_tickCount % 24;  // 24 ticks = 1 quarter note
@@ -413,7 +414,7 @@ void evalTick() {
         pat = g_patRndList[pat - 18][g_posRnd];
       }
 
-      int rtm = g_patRtm[pat][g_posRtm];
+      rtm = g_patRtm[pat][g_posRtm];
       rtmPitch = g_patPitch[pat][g_posRtm];
 
       g_rtmCount = 24 / (g_patRtmDur[pat] + 1);
@@ -543,7 +544,7 @@ void evalTick() {
 
     for (int i = 1; i < 4; i++) {
       if (g_tickCount % 24 == 0) {
-        if (g_setDur[i] == 0 && g_setLevel[i] > 0) {
+        if (rtm == 1 && g_setDur[i] == 0 && g_setLevel[i] > 0) {
           g_chordPitch[i] = g_scaleNote[g_key + seqPitch + patPitch + rtmPitch + g_setChord[i]];
           g_midi.setNoteOn(g_setCh[i], g_chordPitch[i], g_setLevel[i]);
         }
@@ -554,7 +555,7 @@ void evalTick() {
       }
 
       if (g_tickCount % 48 == 0) {
-        if (g_setDur[i] == 1 && g_setLevel[i] > 0) {
+        if (rtm == 1 && g_setDur[i] == 1 && g_setLevel[i] > 0) {
           g_chordPitch[i] = g_scaleNote[g_key + seqPitch + patPitch + rtmPitch + g_setChord[i]];
           g_midi.setNoteOn(g_setCh[i], g_chordPitch[i], g_setLevel[i]);
         }
@@ -565,7 +566,7 @@ void evalTick() {
       }
 
       if (g_tickCount % 96 == 0) {
-        if (g_setDur[i] == 2 && g_setLevel[i] > 0) {
+        if (rtm == 1 && g_setDur[i] == 2 && g_setLevel[i] > 0) {
           g_chordPitch[i] = g_scaleNote[g_key + seqPitch + patPitch + rtmPitch + g_setChord[i]];
           g_midi.setNoteOn(g_setCh[i], g_chordPitch[i], g_setLevel[i]);
         }
@@ -843,6 +844,8 @@ bool loadJson() {
       g_patPitch[i][j] = row_patPitch[j] | 0;
     }
   }
+
+  setScale();
 
   return true;
 }
@@ -3855,7 +3858,7 @@ void cntlPageSet1() {
   M5.Display.setFreeFont(&FreeSans9pt7b);
   if (g_select == 0) {
     for (int i = 1; i < 4; i++) {
-      if (checkEncoder(7 - i, -12, 12)) {
+      if (checkEncoder(7 - i, -24, 24)) {
         g_setChord[i] = g_curEncoder[7 - i];
         M5.Display.fillRect(112 + i * 48, 45, 32, 30, Black);
         M5.Display.drawRect(112 + i * 48, 45, 32, 30, DarkCyan);
