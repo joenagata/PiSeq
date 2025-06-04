@@ -3376,7 +3376,7 @@ void cntlPageDelete() {
         // ファイルのDelete
         Serial.println("cntlPageDelete - OK File:" + g_curFile);
 
-        if (SD.remove("/" + g_curFile + ".json")) {
+        if (SD.remove("/" + g_curFile + "_pi.json")) {
           Serial.println("ファイルを削除しました");
         } else {
           Serial.println("ファイルの削除に失敗しました");
@@ -3541,7 +3541,7 @@ void cntlPageInput() {
           case PageRename:
             Serial.println("cntlPageInput - Rename OK From:" + g_oldFile + " To:" + g_curFile);
             // Rename File
-            if (SD.rename("/" + g_oldFile + ".json", "/" + g_curFile + ".json")) {
+            if (SD.rename("/" + g_oldFile + "_pi.json", "/" + g_curFile + "_pi.json")) {
               Serial.println("ファイル名を変更しました");
             } else {
               Serial.println("リネームに失敗しました");
