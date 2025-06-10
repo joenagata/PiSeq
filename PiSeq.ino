@@ -17,12 +17,31 @@
 // M5GFX 0.2.8
 // M5UNIT_8Encoder 0.0.1
 // M5Unified 0.2.6
+//
+// <Arduino Setting>
+// USB CDC On Boot: "Enabled"
+// CPU Frequency: "240MHz (WiFi)"
+// Core Debug Level: "None"
+// USB DFU On Boot: "Disabled"
+// Erase All Flash Before Sketch Upload: "Disabled"
+// Events Run On "Core 1"
+// Flash Mode: "QIO 80MHz"
+// Flash Size "16MB (128Mb)"
+// JTAG Adapter: "Disabled" or "Integrated USB JTAG"
+// Arduino Runs On "Core 1"
+// USB Firmware MSC On Boot: "Disabled"
+// Partition Scheme: "16M Flash (3MB APP/9.9MB FATFS)"
+// PSRAM "QSPI PSRAM"
+// Upload Mode: "UART0 / Hardware CDC" 
+// Upload Speed: "921600"
+// USB Mode: "Hardware CDC and JTAG"
+//
 // ************************************************** **************************************************
 // ローカル変数    camelCase        dispPage
-// グローバル変数  g_dispPage       g_dispPage
+// グローバル変数  g_camelCase      g_dispPage
 // 定数          UPPER_CASE        MAX_PAGE
 // 列挙名（enum） PascalCase        PageType
-// enumの中身    PascalCase        PagePlay
+// enumの内容    PascalCase        PagePlay
 // ************************************************** **************************************************
 
 const String SrcId = "PiSeq";
