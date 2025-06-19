@@ -13,6 +13,8 @@
 
 [![Watch the video](https://img.youtube.com/vi/jiwhqY61VLk/0.jpg)](https://www.youtube.com/watch?v=jiwhqY61VLk)
 
+**⬆️ クリックすると YouTube で動画が再生されます**
+
 ### ハード構成
 - M5Stack CoreS3 SE
 - M5GO Battery Bottom3
@@ -50,6 +52,8 @@
 それぞれについても音程を上下にシフトする量を設定できます。
 
 [![Watch the video](https://img.youtube.com/vi/KUa65u5TeUI/0.jpg)](https://www.youtube.com/watch?v=KUa65u5TeUI)
+
+**⬆️ クリックすると YouTube で動画が再生されます**
 
 ### ランダムな演奏
 <img src="images/seqrnd.bmp" align="right" width="240">
