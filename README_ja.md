@@ -11,6 +11,8 @@
 - 一部のシーケンス、パターンはランダムに選択することが可能
 - MicroSDカードに曲をセーブ、ロードすることが可能
 
+[![Watch the video](https://img.youtube.com/vi/jiwhqY61VLk/0.jpg)](https://www.youtube.com/watch?v=jiwhqY61VLk)
+
 ### ハード構成
 - M5Stack CoreS3 SE
 - M5GO Battery Bottom3
@@ -46,6 +48,8 @@
 一つのパターンは、四分音符一拍の時間で演奏されますが、演奏の仕方を以下から設定します。
 四分音符×１、八分音符×２、付点十六分音符×３、十六分音符×４
 それぞれについても音程を上下にシフトする量を設定できます。
+
+[![Watch the video](https://img.youtube.com/vi/KUa65u5TeUI/0.jpg)](https://www.youtube.com/watch?v=KUa65u5TeUI)
 
 ### ランダムな演奏
 <img src="images/seqrnd.bmp" align="right" width="240">
