@@ -11,6 +11,8 @@ A MIDI sequencer built from block combinations with random elements.
 - Some sequences and patterns can be selected randomly
 - Songs can be saved to and loaded from a MicroSD card
 
+[![Watch the video](https://img.youtube.com/vi/jiwhqY61VLk/0.jpg)](https://www.youtube.com/watch?v=jiwhqY61VLk)
+
 ### Hardware
 - M5Stack CoreS3 SE
 - M5GO Battery Bottom3
@@ -56,6 +58,8 @@ Each Pattern plays over one quarter note (1 beat), but its rhythm can be selecte
 - 4× sixteenth notes
 
 Each of these note positions can also have an individual pitch shift amount assigned.
+
+[![Watch the video](https://img.youtube.com/vi/KUa65u5TeUI/0.jpg)](https://www.youtube.com/watch?v=KUa65u5TeUI)
 
 ### Random Playback
 <img src="images/seqrnd.bmp" align="right" width="240">
